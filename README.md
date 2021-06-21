@@ -3,10 +3,6 @@
 
 # SQL ZOO
 
-> One paragraph statement about the project.
-
-![screenshot](./app_screenshot.png)
-
 A project aimed at testing my domain knowledge of SQL queries by solving the SQL ZOO tutorial from  [The Odin Project](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/databases/lessons/sql) which includes retrieving and organizing different pieces of data from a table.
 
 ## Built With
