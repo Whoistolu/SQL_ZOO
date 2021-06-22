@@ -33,7 +33,6 @@ To get a local copy up and running follow these simple example steps.
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/toluwase-ajise-9b40411b2/)
 
 
-
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
