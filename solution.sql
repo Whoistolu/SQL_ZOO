@@ -43,9 +43,22 @@ FROM world
 WHERE name LIKE '%United%'
 
 -- (7) Two ways to be big
-SELECT name, area, population
+SELECT name, population, area
  FROM world
-where area > 300000000 or population > 250000000;
+WHERE area > 3000000 or population > 250000000;
+
+-- (8) One or the other (but not both)
+SELECT name, population, area
+ FROM world
+WHERE area > 3000000 XOR population > 250000000;
+
+-- (9) Rounding
+SELECT name, ROUND (POPULATION/1000000, 2), ROUND(gdp/1000000000, 2)
+ FROM world
+WHERE continent = 'South America';
+
+-- (10) Trillion dollar economies
+
 
 
 
