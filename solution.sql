@@ -58,7 +58,16 @@ SELECT name, ROUND (POPULATION/1000000, 2), ROUND(gdp/1000000000, 2)
 WHERE continent = 'South America';
 
 -- (10) Trillion dollar economies
+SELECT name, ROUND(GDP/population/1000)*1000
+ FROM world
+WHERE GDP > 1000000000000;
 
+-- (11) Name and capital have the same length
+SELECT name, capital
+ FROM world
+ WHERE LENGTH(name) = LENGTH(capital);
 
-
-
+-- (12) Matching name and capital
+SELECT name, capital
+ FROM world
+WHERE LEFT(name,1) = LEFT(capital,1) AND name <> capital;
