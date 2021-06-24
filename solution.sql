@@ -453,3 +453,14 @@ SELECT COUNT(teacher.id), COUNT(mobile) FROM teacher;
 
 -- 8.
 SELECT dept.name, COUNT(teacher.dept) FROM teacher RIGHT JOIN dept ON teacher.dept = dept.id GROUP BY dept.name;
+
+-- 9.
+SELECT teacher.name,
+CASE WHEN teacher.dept IN (1, 2) THEN 'Sci'
+  ELSE 'Art' END AS dept FROM teacher;
+
+-- 10.
+SELECT teacher.name,
+CASE WHEN teacher.dept IN (1,2) THEN 'Sci'
+WHEN teacher.dept IN (3) THEN 'Art'
+ELSE 'None' END AS dept FROM teacher;
