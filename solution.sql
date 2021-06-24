@@ -149,3 +149,25 @@ SELECT winner, subject
   FROM nobel
  WHERE yr = 1984
  ORDER BY subject IN ('Physics','Chemistry'), subject, winner;
+
+ -- SELECT within SELECT Tutorial
+
+-- 1. Bigger than Russia
+SELECT name FROM world
+  WHERE population >
+     (SELECT population FROM world
+      WHERE name='Russia');
+
+-- 2. Richer than UK
+SELECT name FROM world 
+WHERE continent = 'Europe' AND gdp/population > 
+  (SELECT gdp/population FROM world 
+    WHERE name = 'United Kingdom');
+
+-- 3. Neighbours of Argentina and Australia
+SELECT name, continent
+FROM world
+WHERE continent IN (SELECT continent
+  FROM world
+  WHERE name IN ('Argentina', 'Australia'))
+  ORDER BY name;
