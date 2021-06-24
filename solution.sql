@@ -374,3 +374,50 @@ SELECT title FROM movie
 JOIN casting ON movie.id = movieid
 JOIN actor ON actor.id = actorid
 WHERE name= 'Harrison Ford' AND ord<>1;
+
+-- 10. Lead actors in 1962 movies
+SELECT title, name FROM movie 
+JOIN casting ON movie.id = movieid
+JOIN actor ON actor.id = actorid
+WHERE yr= 1962 AND ord=1;
+    
+-- 11. Busy years for Rock Hudson
+SELECT yr,COUNT(title) FROM
+  movie JOIN casting ON movie.id=movieid
+        JOIN actor   ON actorid=actor.id
+WHERE name='Rock Hudson'
+GROUP BY yr
+HAVING COUNT(title) > 2;
+
+-- 12. Lead actor in Julie Andrews movies
+SELECT title, name FROM movie
+JOIN casting ON movie.id = movieid
+JOIN actor ON actor.id = actorid
+WHERE movieid IN ( 
+  SELECT movieid FROM casting WHERE actorid IN (
+  SELECT id FROM actor
+  WHERE name='Julie Andrews')) AND  casting.ord = 1;
+
+-- 13. Actors with 15 leading roles
+SELECT name FROM casting
+  JOIN actor ON (actor.id = actorid AND casting.ord = 1)
+  JOIN movie ON (movie.id = movieid)
+    GROUP BY name HAVING COUNT(ord) >= 15
+      ORDER BY name;
+
+-- 14.
+SELECT title, COUNT(actorid) FROM casting
+  JOIN actor ON (actor.id = actorid)
+  JOIN movie ON (movie.id = movieid)
+   WHERE yr = 1978
+   GROUP BY title
+   ORDER BY COUNT(actorid) DESC, title ASC;
+
+-- 15.
+SELECT DISTINCT name FROM actor
+JOIN casting ON actor.id = actorid
+JOIN movie ON movie.id = movieid
+WHERE movieid IN ( 
+  SELECT movieid FROM casting WHERE actorid IN (
+  SELECT id FROM actor
+  WHERE name='Art Garfunkel')) AND name <> 'Art Garfunkel';
