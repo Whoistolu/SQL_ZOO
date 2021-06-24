@@ -256,3 +256,24 @@ SELECT continent
 FROM world
 GROUP BY continent
 HAVING SUM(population) > 100000000;
+
+-- JOIN and UEFA EURO 2012
+
+-- 1.
+SELECT matchid, player FROM goal 
+  WHERE teamid = 'GER';
+
+-- 2.
+SELECT id,stadium,team1,team2
+  FROM game
+  WHERE id = '1012';
+
+-- 3.
+SELECT player, teamid, stadium, mdate
+  FROM game JOIN goal ON (id=matchid)
+  WHERE teamid = 'GER';
+
+-- 4.
+SELECT team1, team2, player
+  FROM game JOIN goal ON (id=matchid)
+  WHERE player LIKE 'Mario%';
