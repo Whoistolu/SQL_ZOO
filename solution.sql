@@ -90,3 +90,13 @@ SELECT winner
   FROM nobel
  WHERE yr = 1962
    AND subject = 'Literature';
+
+   -- 3. Albert Einstein
+SELECT yr, subject
+  FROM nobel
+ WHERE winner = 'Albert Einstein';
+
+-- 4. Recent Peace Prizes
+SELECT winner
+  FROM nobel
+ WHERE subject = 'Peace' AND yr >= 2000;
