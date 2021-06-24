@@ -277,3 +277,33 @@ SELECT player, teamid, stadium, mdate
 SELECT team1, team2, player
   FROM game JOIN goal ON (id=matchid)
   WHERE player LIKE 'Mario%';
+
+  -- 5.
+SELECT player, teamid, coach, gtime
+  FROM goal JOIN eteam ON (teamid=id)
+  WHERE gtime<=10;
+
+-- 6.
+SELECT mdate, teamname
+  FROM game JOIN eteam ON (team1=eteam.id)
+  WHERE coach = 'Fernando Santos';
+
+-- 7.
+SELECT player
+  FROM goal JOIN game ON (matchid=id)
+  WHERE stadium = 'National Stadium, Warsaw';
+
+-- 8.
+SELECT DISTINCT player
+  FROM game JOIN goal ON matchid = id 
+    WHERE (team1='GER' OR team2='GER') AND teamid!='GER';
+
+-- 9.
+SELECT teamname, COUNT(*)
+  FROM eteam JOIN goal ON id=teamid
+ GROUP BY teamname;
+    
+-- 10.
+SELECT stadium, COUNT(*)
+  FROM game JOIN goal ON id=matchid
+ GROUP BY stadium;
