@@ -464,3 +464,22 @@ SELECT teacher.name,
 CASE WHEN teacher.dept IN (1,2) THEN 'Sci'
 WHEN teacher.dept IN (3) THEN 'Art'
 ELSE 'None' END AS dept FROM teacher;
+
+-- Self join
+
+-- 1. How many stops are in the database.
+SELECT COUNT(*) FROM stops;
+
+-- 2. Find the id value for the stop 'Craiglockhart'
+SELECT id FROM stops WHERE name = 'Craiglockhart';
+
+-- 3. Give the id and the name for the stops on the '4' 'LRT' service.
+SELECT id, name FROM stops
+JOIN route ON stops.id = stop
+WHERE company = 'LRT' AND num = '4';
+
+-- 4. Routes and stops
+SELECT company, num, COUNT(*)
+FROM route WHERE stop=149 OR stop=53
+GROUP BY company, num
+HAVING COUNT(*) > 1;
