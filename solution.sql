@@ -115,3 +115,18 @@ SELECT * FROM nobel
 -- 7. John
 SELECT winner FROM nobel
  WHERE winner LIKE 'John%';
+
+ -- 8. Chemistry and Physics from different years
+SELECT yr, subject, winner
+FROM nobel
+ WHERE (subject = 'Physics' AND yr = 1980) OR (subject = 'Chemistry' AND yr = 1984);
+
+-- 9. Exclude Chemists and Medics
+SELECT yr, subject, winner
+FROM nobel
+ WHERE yr = 1980 AND subject NOT IN ('Chemistry', 'Medicine');
+
+-- 10. Early Medicine, Late Literature
+SELECT yr, subject, winner
+FROM nobel
+ WHERE (subject = 'Medicine' AND yr < 1910) OR (subject = 'Literature' AND yr >= 2004);
