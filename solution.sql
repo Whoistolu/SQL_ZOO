@@ -213,3 +213,23 @@ SELECT name, continent FROM world x
   WHERE population >= ALL
     (SELECT population * 3 FROM world y
         WHERE y.continent=x.continent AND x.name <> y.name);
+
+        -- SUM and COUNT
+
+-- 1. Total world population
+SELECT SUM(population)
+FROM world;
+
+-- 2. List of continents
+SELECT DISTINCT continent
+FROM world;
+
+-- 3. GDP of Africa
+SELECT SUM(gdp)
+FROM world
+WHERE continent = 'Africa';
+
+-- 4. Count the big countries
+SELECT COUNT(area)
+FROM world
+WHERE area > 1000000;
