@@ -465,6 +465,8 @@ CASE WHEN teacher.dept IN (1,2) THEN 'Sci'
 WHEN teacher.dept IN (3) THEN 'Art'
 ELSE 'None' END AS dept FROM teacher;
 
+
+
 -- Self join
 
 -- 1. How many stops are in the database.
@@ -511,6 +513,7 @@ FROM route a JOIN route b ON
   JOIN stops stopa ON (a.stop=stopa.id)
   JOIN stops stopb ON (b.stop=stopb.id)
 WHERE stopa.name='Craiglockhart' AND stopb.name = 'Tollcross';
+
 
 -- 9.
 SELECT DISTINCT stopb.name, a.company, a.num
