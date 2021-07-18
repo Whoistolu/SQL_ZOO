@@ -386,8 +386,8 @@ WHERE yr= 1962 AND ord=1;
     
 -- (11) Busy years for Rock Hudson
 SELECT yr,COUNT(title) FROM
-  movie JOIN casting ON movie.id=movieid
-        JOIN actor   ON actorid=actor.id
+movie JOIN casting ON movie.id=movieid
+JOIN actor   ON actorid=actor.id
 WHERE name='Rock Hudson'
 GROUP BY yr
 HAVING COUNT(title) > 2;
@@ -410,20 +410,20 @@ SELECT name FROM casting
 
 -- (14)
 SELECT title, COUNT(actorid) FROM casting
-  JOIN actor ON (actor.id = actorid)
-  JOIN movie ON (movie.id = movieid)
-   WHERE yr = 1978
-   GROUP BY title
-   ORDER BY COUNT(actorid) DESC, title ASC;
+JOIN actor ON (actor.id = actorid)
+JOIN movie ON (movie.id = movieid)
+WHERE yr = 1978
+GROUP BY title
+ORDER BY COUNT(actorid) DESC, title ASC;
 
 -- (15)
 SELECT DISTINCT name FROM actor
 JOIN casting ON actor.id = actorid
 JOIN movie ON movie.id = movieid
 WHERE movieid IN ( 
-  SELECT movieid FROM casting WHERE actorid IN (
-  SELECT id FROM actor
-  WHERE name='Art Garfunkel')) AND name <> 'Art Garfunkel';
+SELECT movieid FROM casting WHERE actorid IN (
+SELECT id FROM actor
+WHERE name='Art Garfunkel')) AND name <> 'Art Garfunkel';
 
 
 -- Using Null
@@ -433,18 +433,18 @@ SELECT name FROM teacher WHERE dept IS NULL;
 
 -- (2)
 SELECT teacher.name, dept.name
- FROM teacher INNER JOIN dept
-           ON (teacher.dept=dept.id);
+FROM teacher INNER JOIN dept
+ON (teacher.dept=dept.id);
 
 -- (3)
 SELECT teacher.name, dept.name
- FROM teacher LEFT JOIN dept
-           ON (teacher.dept=dept.id);
+FROM teacher LEFT JOIN dept
+ON (teacher.dept=dept.id);
 
 -- (4)
 SELECT teacher.name, dept.name
- FROM teacher RIGHT JOIN dept
-           ON (teacher.dept=dept.id);
+FROM teacher RIGHT JOIN dept
+ON (teacher.dept=dept.id);
 
 -- (5)
 SELECT teacher.name, COALESCE(mobile, '07986 444 2266') FROM teacher;
@@ -468,7 +468,6 @@ SELECT teacher.name,
 CASE WHEN teacher.dept IN (1,2) THEN 'Sci'
 WHEN teacher.dept IN (3) THEN 'Art'
 ELSE 'None' END AS dept FROM teacher;
-
 
 
 -- Self join
@@ -517,7 +516,6 @@ FROM route a JOIN route b ON
   JOIN stops stopa ON (a.stop=stopa.id)
   JOIN stops stopb ON (b.stop=stopb.id)
 WHERE stopa.name='Craiglockhart' AND stopb.name = 'Tollcross';
-
 
 -- (9)
 SELECT DISTINCT stopb.name, a.company, a.num
