@@ -118,7 +118,7 @@ SELECT winner FROM nobel
 
  -- (8) Chemistry and Physics from different years
 SELECT yr, subject, winner
-FROM nobel
+  FROM nobel
  WHERE (subject = 'Physics' AND yr = 1980) OR (subject = 'Chemistry' AND yr = 1984);
 
 -- (9) Exclude Chemists and Medics
@@ -128,7 +128,7 @@ FROM nobel
 
 -- (10) Early Medicine, Late Literature
 SELECT yr, subject, winner
-FROM nobel
+  FROM nobel
  WHERE (subject = 'Medicine' AND yr < 1910) OR (subject = 'Literature' AND yr >= 2004);
 
  -- (11) Umlaut
@@ -166,7 +166,7 @@ WHERE continent = 'Europe' AND gdp/population >
 
 -- (3) Neighbours of Argentina and Australia
 SELECT name, continent
-FROM world
+  FROM world
 WHERE continent IN (SELECT continent
   FROM world
   WHERE name IN ('Argentina', 'Australia'))
@@ -174,7 +174,7 @@ WHERE continent IN (SELECT continent
 
   -- (4) Between Canada and Poland
 SELECT name, population
-FROM world
+  FROM world
 WHERE population > (SELECT population FROM world 
   WHERE name = 'Canada') AND population < (SELECT population FROM world 
     WHERE name = 'Poland');
@@ -182,7 +182,7 @@ WHERE population > (SELECT population FROM world
 -- (5) Percentages of Germany
 SELECT name, CONCAT(ROUND(100*population/
   (SELECT population FROM world WHERE name = 'Germany')), '%') AS percentage
-FROM world
+  FROM world
 WHERE continent = 'Europe';
 
 -- (6) Bigger than every country in Europe
@@ -205,7 +205,7 @@ SELECT continent, name FROM world x
 
 -- (9) Difficult Questions That Utilize Techniques Not Covered In Prior Sections
 SELECT name, continent, population
-FROM world x
+  FROM world x
 WHERE 25000000 >= ALL(SELECT population FROM world y WHERE x.continent = y.continent);
 
 -- (10) Difficult Questions That Utilize Techniques Not Covered In Prior Sections
@@ -228,7 +228,7 @@ FROM world;
 
 -- (3) GDP of Africa
 SELECT SUM(gdp)
-FROM world
+  FROM world
 WHERE continent = 'Africa';
 
 -- (4) Count the big countries
@@ -239,23 +239,23 @@ WHERE area > 1000000;
 
 -- (5) Baltic states population
 SELECT SUM(population)
-FROM world
+  FROM world
 WHERE name IN ('Estonia', 'Latvia', 'Lithuania');
 
 -- (6) Counting the countries of each continent
 SELECT continent, COUNT(name)
-FROM world
+  FROM world
 GROUP BY continent;
 
 -- (7) Counting big countries in each continent
 SELECT continent, COUNT(name)
-FROM world
+  FROM world
 WHERE population > 10000000
 GROUP BY continent;
 
 -- (8) Counting big continents
 SELECT continent
-FROM world
+  FROM world
 GROUP BY continent
 HAVING SUM(population) > 100000000;
 
